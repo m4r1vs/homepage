@@ -1,30 +1,28 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
 
-import Header from './header';
-import Home from '../routes/home';
-import Profile from '../routes/profile';
-// import Home from 'async!./home';
-// import Profile from 'async!./profile';
+import Main from './main';
+
+// Calculate my current age based on the date
+const calculateAge = (year, month, day) => {
+	const timestamp = new Date();
+	const yearNow = timestamp.getFullYear() + (timestamp.getMonth() / 11) + (timestamp.getDate() / 300);
+	return yearNow - (year + (month / 12) + (day / 300));
+};
 
 export default class App extends Component {
-	/** Gets fired when the route changes.
-	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
-	 *	@param {string} event.url	The newly routed URL
-	 */
-	handleRoute = e => {
-		this.currentUrl = e.url;
-	};
+
+	state = {
+		me: {
+			given_name: 'Marius',
+			family_name: 'Niveri',
+			age: calculateAge(2001, 11, 22)
+		}
+	}
 
 	render() {
 		return (
 			<div id="app">
-				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
-				</Router>
+				<Main me={this.state.me} />
 			</div>
 		);
 	}
