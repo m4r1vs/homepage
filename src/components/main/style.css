@@ -2,11 +2,14 @@
   color: #00ff00;
   margin: 20px;
   font-size: 18px;
+  height: 100%;
 }
 
 .main form {
   opacity: 0;
   filter: alpha(opacity=0);
+  width: 0;
+  height: 0;
 }
 
 .main .cursor {

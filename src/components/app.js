@@ -22,7 +22,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div id="app">
-				<Main me={this.state.me} />
+				<Main state={this.state} />
 			</div>
 		);
 	}
