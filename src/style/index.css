@@ -20,4 +20,7 @@ span {
 
 #app {
 	height: 100%;
+	overflow-y: scroll;
+	border: #a0a0a0 solid;
+	overflow-x: hidden;
 }

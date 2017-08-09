@@ -19,7 +19,8 @@ const commandHandler = (command) => {
           &nbsp;&nbsp;&nbsp;&nbsp;- skills<br />
           &nbsp;&nbsp;&nbsp;&nbsp;- toolbelt<br />
           &nbsp;&nbsp;&nbsp;&nbsp;- general<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;- work<br />							&nbsp;&nbsp;&nbsp;&nbsp;- contact<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;- work<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- contact<br />
           &nbsp;&nbsp;&nbsp;&nbsp;- socialnetorks
 				</span>
 			);

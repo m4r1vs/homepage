@@ -3,58 +3,64 @@ import style from './style';
 import commandHandler from '../../commands';
 
 export default class Main extends Component {
-		state = {
-			commandList: [{
-				command: 'cat README.md',
-				response: (
-					<span>
-						Hi, this is my homepage, portfolio, website or whatever to call it. Because I like bash and terminals in general, I build this page like one. To get started type <i>apt install marius-cli</i> ;) <br /><br />
-					</span>
-				)
-			}],
-			path: 'you@niveri.me as guest $  ',
-			installed: false,
-			input: String
-		}
-
-		parent = this.props.state;
 
 		changeText = e => {
-			this.setState({ input: e.target.value });
+			this.props.setState({ input: e.target.value });
 		}
 
 		handleEnter = e => {
 			e.preventDefault();
-			const command = this.state.input;
+			const command = this.props.state.input;
 			let response = 'command unknown';
 			if (typeof command === 'string' && command !== '') {
 
 				switch (command.split(' ')[0]) {
 
 					case 'marius':
-						if (this.state.installed) response = commandHandler(command);
+						if (this.props.state.installed) response = commandHandler(command);
 						else response = <span><i>MariusCLI</i> is currently not installed, install it by typing 'apt install marius-cli'</span>;
 						break;
 
 					case 'cat':
 						if (command.split(' ')[1] === 'readme.md' || command.split(' ')[1] === 'README.md') {
 							response = (<span>
-								Hi, this is my homepage, portfolio, website or whatever to call it. Because I like bash and terminals in general, I build this page like one. To get started type <i>apt install marius-cli</i> ;)
+								Hi, this is my homepage, portfolio, website or whatever to call it.<br />Because I like bash and terminals in general, I build this page like one.<br />To get started type <i>apt install marius-cli</i> ;)
 							</span>);
+						}
+						else if (command.split(' ')[1] === 'desktop.ini' || command.split(' ')[1] === 'DESKTOP.ini') {
+							response = <span>[cat] you don't seem to have the permissions to read 'desktop.ini'.</span>;
 						}
 						else {
 							response = <span>[cat] cannot find given file :/</span>;
 						}
 						break;
 
+					case 'ls':
+						if (command.split(' ').length >= 2) {
+							response = <span>[list] usage: <i>ls</i></span>;
+						}
+						else {
+							response = <span>README.md  desktop.ini</span>;
+						}
+						break;
+
+					case 'sudo':
+						response = <span>[sudo] What the hell are you actually doing here? Remember, you are the guest here!</span>;
+						break;
+
+					case 'c':
+						this.props.setState({ commandList: [] });
+						response = <span>[clear] cleared the history succesfully</span>;
+						break;
+
 					case 'apt':
 						if (command.split(' ')[1] === 'install') {
 							if (command.split(' ')[2] === 'marius-cli') {
-								if (this.state.installed) {
+								if (this.props.state.installed) {
 									response = <span>[apt] You have already installed MariusCLI.</span>;
 								}
 								else {
-									this.setState({ installed: true });
+									this.props.setState({ installed: true });
 									response = (
 										<span>
 										Installing MariusCLI {this.props.state.version} to computer... [100%] <br />
@@ -92,10 +98,10 @@ export default class Main extends Component {
 			else {
 				response = null;
 			}
-			this.setState({ input: '' }); // clear state
+			this.props.setState({ input: '' }); // clear state
 			e.target.children.input.value = ''; // clear Input
-			this.setState({ commandList:
-				this.state.commandList.concat([
+			this.props.setState({ commandList:
+				this.props.state.commandList.concat([
 					{
 						command,
 						response
@@ -122,11 +128,17 @@ export default class Main extends Component {
 			return (
 				<main onKeyDown={this.handleArrowKeys} onClick={this.focusInput} class={style.main}>
 
-					{this.state.commandList.map((commandList) =>
-						<span>{this.state.path}{commandList.command}<br />{commandList.response}</span>
+					{this.props.state.commandList.map((commandList) =>
+						<span>{this.props.state.path}{commandList.command}<br />{commandList.response}</span>
 					)}
 
-					<span>{this.state.path}{this.state.input}
+					<audio
+						ref={(audio) => {this.keyPressElem = audio;}}
+						src="../../assets/keyPress.mp3"
+						autostart="false"
+					/>
+
+					<span>{this.props.state.path}{this.props.state.input}
 						<span class={style.cursor}>_</span>
 					</span>
 

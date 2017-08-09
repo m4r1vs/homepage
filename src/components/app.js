@@ -18,14 +18,36 @@ export default class App extends Component {
 			family_name: 'Niveri',
 			age: calculateAge(2001, 11, 22)
 		},
-		version: 'v1.0.3'
+		version: 'v1.0.3',
+		commandList: [{
+			command: 'cat README.md',
+			response: (
+				<span>
+					Hi, this is my homepage, portfolio, website or whatever to call it.<br />Because I like bash and terminals in general, I build this page like one.<br />To get started type <i>apt install marius-cli</i> ;) <br /><br />
+				</span>
+			)
+		}],
+		path: 'you@niveri.me as guest $  ',
+		installed: false,
+		input: String
+	}
+
+	setStateCustom = state => {
+		this.setState(state);
+	}
+
+	componentDidUpdate = () => {
+		this.appWrapper.scrollTo(0, this.appWrapper.scrollHeight);
 	}
 
 	render() {
 		return (
-			<div id="app">
+			<div
+				id="app"
+				ref={(div) => {this.appWrapper = div;}}
+			>
 				<TopBar />
-				<Main state={this.state} />
+				<Main state={this.state} setState={this.setStateCustom} />
 			</div>
 		);
 	}
