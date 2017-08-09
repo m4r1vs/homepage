@@ -1,0 +1,24 @@
+.header {
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 28px;
+  background-color: #a0a0a0;
+}
+
+.header div {
+  float: right;
+  margin: 3px 3px 0 0;
+  background-color: #e0e0e0;
+  width: 20px;
+  height: 20px;
+  font-size: 25px;
+  padding-left: 3px;
+  line-height: 0.6;
+  cursor: pointer;
+  box-shadow: #515151 -2px 2px 0px 0px;
+}
+.header div:hover {
+  margin: 4px 4px 0 0;
+  box-shadow: #515151 -1px 1px 0px 0px;
+}

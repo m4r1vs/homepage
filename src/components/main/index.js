@@ -1,13 +1,19 @@
 import { h, Component } from 'preact';
 import style from './style';
+import commandHandler from '../../commands';
 
 export default class Main extends Component {
 		state = {
 			commandList: [{
-				command: 'sudo apt-get install MariusCLI@v0.2.1',
-				response: <span>hello world</span>
+				command: 'cat README.md',
+				response: (
+					<span>
+						Hi, this is my homepage, portfolio, website or whatever to call it. Because I like bash and terminals in general, I build this page like one. To get started type <i>apt install marius-cli</i> ;) <br /><br />
+					</span>
+				)
 			}],
-			path: 'user@niver.me as root $  ',
+			path: 'you@niveri.me as guest $  ',
+			installed: false,
 			input: String
 		}
 
@@ -21,31 +27,70 @@ export default class Main extends Component {
 			e.preventDefault();
 			const command = this.state.input;
 			let response = 'command unknown';
-			switch (command) {
-				case 'marius help':
-					response = (
-						<span>
-							<span style={{ fontFamily: 'monospace', whiteSpace: 'pre' }}>
-								___  ___           _           _____  _     _____ <br />
-								|  \/  |          (_)         /  __ \| |   |_   _|<br />
-								| .  . | __ _ _ __ _ _   _ ___| /  \/| |     | |  <br />
-								| |\/| |/ _` | '__| | | | / __| |    | |     | |  <br />
-								| |  | | (_| | |  | | |_| \__ \ \__/\| |_____| |_ <br />
-								\_|  |_/\__,_|_|  |_|\__,_|___/\____/\_____/\___/ <br />
+			if (typeof command === 'string' && command !== '') {
+
+				switch (command.split(' ')[0]) {
+
+					case 'marius':
+						if (this.state.installed) response = commandHandler(command);
+						else response = <span><i>MariusCLI</i> is currently not installed, install it by typing 'apt install marius-cli'</span>;
+						break;
+
+					case 'cat':
+						if (command.split(' ')[1] === 'readme.md' || command.split(' ')[1] === 'README.md') {
+							response = (<span>
+								Hi, this is my homepage, portfolio, website or whatever to call it. Because I like bash and terminals in general, I build this page like one. To get started type <i>apt install marius-cli</i> ;)
+							</span>);
+						}
+						else {
+							response = <span>[cat] cannot find given file :/</span>;
+						}
+						break;
+
+					case 'apt':
+						if (command.split(' ')[1] === 'install') {
+							if (command.split(' ')[2] === 'marius-cli') {
+								if (this.state.installed) {
+									response = <span>[apt] You have already installed MariusCLI.</span>;
+								}
+								else {
+									this.setState({ installed: true });
+									response = (
+										<span>
+										Installing MariusCLI {this.props.state.version} to computer... [100%] <br />
+										Finished. You can now start using MariusCLI by typing <i>marius help</i>.
+										</span>
+									);
+								}
+							}
+							else if (command.split(' ').length <= 2) {
+								response = <span>[apt] usage: <i>apt install [package]</i></span>;
+							}
+							else {
+								response = <span>[apt] cannot find programe "{command.split(' ')[2]}" </span>;
+							}
+						}
+						else {
+							response = <span>[apt] As a guest you are only allowed to use <i>apt install</i>.</span>;
+						}
+						break;
+
+					default:
+						response = (
+							<span>
+								command not found: {command}
 							</span>
-							<br />Usage: <i>marius [command]</i><br /><br />
-							Where <i>[command]</i> is one of following:<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;- help<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;- skills<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;- toolbelt<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;- general<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;- work<br />							&nbsp;&nbsp;&nbsp;&nbsp;- contact<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;- socialnetorks
-						</span>
-					);
-					break;
-				default:
-					response = 'command unknown';
+						);
+				}
+
+				response = (
+					<span>
+						{response}<br /><br />
+					</span>
+				);
+			}
+			else {
+				response = null;
 			}
 			this.setState({ input: '' }); // clear state
 			e.target.children.input.value = ''; // clear Input
@@ -69,16 +114,25 @@ export default class Main extends Component {
 			this.consoleInput.focus();
 		}
 
+		componentDidUpdate = () => {
+			window.scrollTo(0,document.body.scrollHeight);
+		}
+
 		render() {
 			return (
 				<main onKeyDown={this.handleArrowKeys} onClick={this.focusInput} class={style.main}>
 
 					{this.state.commandList.map((commandList) =>
-						<span>{this.state.path}{commandList.command}<br />{commandList.response}<br /><br /></span>
+						<span>{this.state.path}{commandList.command}<br />{commandList.response}</span>
 					)}
-					<span>{this.state.path}{this.state.input}<span class={style.cursor}>_</span></span>
+
+					<span>{this.state.path}{this.state.input}
+						<span class={style.cursor}>_</span>
+					</span>
+
 					<form onSubmit={this.handleEnter}>
 						<input
+							name="terminalInput"
 							ref={(input) => {this.consoleInput = input;}}
 							autoComplete={false}
 							id="input"
@@ -87,6 +141,7 @@ export default class Main extends Component {
 							autoFocus
 						/>
 					</form>
+
 				</main>
 			);
 		}

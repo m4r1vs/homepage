@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 
 import Main from './main';
+import TopBar from './topBar';
 
 // Calculate my current age based on the date
 const calculateAge = (year, month, day) => {
@@ -16,12 +17,14 @@ export default class App extends Component {
 			given_name: 'Marius',
 			family_name: 'Niveri',
 			age: calculateAge(2001, 11, 22)
-		}
+		},
+		version: 'v1.0.3'
 	}
 
 	render() {
 		return (
 			<div id="app">
+				<TopBar />
 				<Main state={this.state} />
 			</div>
 		);
