@@ -8,6 +8,11 @@ html, body {
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	image-rendering: pixelated;
+}
+
+#img_of_me {
+	 height: 272px;
 }
 
 span {

@@ -12,8 +12,10 @@ export default class TopBar extends Component {
 		render() {
 			return (
 				<header class={style.header}>
-          you@niveri.me as guest - Terminal
-					<div onClick={this.close}>x</div>
+					<center>
+						<b><div class={style.title}>you@niveri.me as guest - Terminal</div></b>
+					</center>
+					<div onClick={this.close} class={style.close}>x</div>
 				</header>
 			);
 		}
