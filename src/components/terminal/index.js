@@ -24,8 +24,12 @@ export default class Main extends Component {
 				this.keyPressElem.currentTime = 0;
 				this.keyPressElem.play();
 			}
+			else {
+				this.handleEnter(e);
+			}
 			if (e.key === 'ArrowUp');
 			if (e.key === 'ArrowDown');
+			this.focusInput();
 		}
 
 		getYear = () => {
@@ -38,21 +42,23 @@ export default class Main extends Component {
 		}
 
 		componentDidUpdate = () => {
-			window.scrollTo(0,document.body.scrollHeight);
+			document.getElementById('terminal').scrollTo(0,document.getElementById('terminal').scrollHeight);
+			this.focusInput();
 		}
 
 		render() {
 			return (
-				<main
+				<div
+					id="terminal"
 					onKeyDown={this.handleKeyPress}
 					onClick={this.focusInput}
 					class={style.main}
 				>
 
 					NiveriOS [Version 1.3.6]<br />
-					(c) {this.getYear()} Marius Niveri. All rights reserved.<br /><br />
+					(c) {this.getYear()} Marius Niveri. Licensed under MIT.<br /><br />
 					{this.props.state.commandList.map((commandList) =>
-						<span>{this.props.state.path}{commandList.command}<br />{commandList.response}</span>
+						<span>{this.props.state.path}{commandList.command}<br /><span class={style.history}>{commandList.response}</span></span>
 					)}
 
 					<audio
@@ -61,23 +67,22 @@ export default class Main extends Component {
 						autostart="false"
 					/>
 
-					<span style={{ display: this.props.state.inputVisible ? 'block':'none' }}>{this.props.state.path}{this.props.state.input}
-						<span class={style.cursor}>_</span>
+					<span style={{ display: this.props.state.inputVisible ? 'inline-block':'none', width: '258px', marginBottom: '10px' }}>{this.props.state.path}
+
 					</span>
 
-					<form onSubmit={this.handleEnter}>
-						<input
-							name={Math.random() + '-input'}
-							ref={(input) => {this.consoleInput = input;}}
-							autoComplete={false}
-							id="input"
-							type="text"
-							onInput={this.changeText}
-							autoFocus
-						/>
-					</form>
+					<input
+						name={Math.random() + '-input'}
+						ref={(input) => {this.consoleInput = input;}}
+						autoComplete={false}
+						id="input"
+						type="text"
+						onInput={this.changeText}
+						autoFocus
+						style={{ display: this.props.state.inputVisible ? 'inline-block':'none' }}
+					/>
 
-				</main>
+				</div>
 			);
 		}
 }

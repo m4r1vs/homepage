@@ -71,7 +71,9 @@ const handleCommands = (command, consoleInput, state, setState) => {
 						&nbsp;&nbsp;&nbsp;&nbsp;- niv: NIV package manager<br />
 						&nbsp;&nbsp;&nbsp;&nbsp;- ls: list files in cur. directory<br />
 						&nbsp;&nbsp;&nbsp;&nbsp;- clear: clear output<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;- cat: echo content of file
+						&nbsp;&nbsp;&nbsp;&nbsp;- cat: echo content of file<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;- wallpaper: change the wallpaper<br /><br />
+						You may visit this page's GitHub <a href="https://github.com/m4r1vs/homepage">here</a> to get its sourcecode.
 					</span>
 				);
 				break;
@@ -79,6 +81,56 @@ const handleCommands = (command, consoleInput, state, setState) => {
 			case 'clear':
 				setState({ commandList: [] });
 				response = <span>[clear] cleared the history succesfully</span>;
+				break;
+
+			case 'moin':
+				response = <span><b>HUMMEL! HUMMEL!</b></span>;
+				break;
+
+			case 'hummel':
+				response = <span><b>MORS! MORS!</b></span>;
+				break;
+
+			case 'wallpaper':
+				if (command.split(' ').length >= 2) {
+					switch (command.split(' ')[1]){
+						case 'list':
+							response = (
+								<span>
+									[system] you can select one of following wallpapers:<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;- linux<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;- xp<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;- niveri<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;- src
+								</span>);
+							break;
+						case 'remove':
+							document.getElementById('wrapper').style.backgroundImage = 'none';
+							response = <span>[system] removed the wallpaper</span>;
+							break;
+						case 'linux':
+							document.getElementById('wrapper').style.backgroundImage = 'url(../assets/wallpaper/linux.jpg)';
+							response = <span>[system] changed wallpaper to good old Linux</span>;
+							break;
+						case 'xp':
+							document.getElementById('wrapper').style.backgroundImage = 'url(../assets/wallpaper/xp.jpg)';
+							response = <span>[system] changed wallpaper to some useless lawn</span>;
+							break;
+						case 'niveri':
+							document.getElementById('wrapper').style.backgroundImage = 'url(../assets/wallpaper/niveri.jpg)';
+							response = <span>[system] changed wallpaper to a picture I took in finland :)</span>;
+							break;
+						case 'src':
+							document.getElementById('wrapper').style.backgroundImage = 'url(../assets/wallpaper/src.jpg)';
+							response = <span>[system] changed wallpaper to some code</span>;
+							break;
+						default:
+							response = <span>[system] {command.split(' ')[1]} isn't a wallpaper</span>;
+					}
+				}
+				else {
+					response = <span>[niv] use <i>wallpaper list</i> to list all wallpapers available</span>;
+				}
 				break;
 
 			case 'niv':
@@ -145,7 +197,7 @@ const handleCommands = (command, consoleInput, state, setState) => {
 			default:
 				response = (
 					<span>
-						command not found: {command}
+						command not found: {command}. Use <i>help</i> to list all commands
 					</span>
 				);
 		}
@@ -170,6 +222,7 @@ const handleCommands = (command, consoleInput, state, setState) => {
 				setState({ commandList });
 				setTimeout(() => {
 					setState({ inputVisible: true });
+					document.getElementById('terminal').scrollTo(0,document.getElementById('terminal').scrollHeight);
 				}, Math.random() * 200);
 			}, Math.random() * 600);
 		}

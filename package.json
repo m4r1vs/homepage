@@ -1,12 +1,12 @@
 {
   "name": "landing",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && yarn run -s serve || yarn run -s dev",
     "build": "preact build",
-    "serve": "preact build && preact serve",
+    "serve": "preact build && preact serve -p 8001",
     "dev": "preact watch",
     "test": "eslint src && preact test"
   },

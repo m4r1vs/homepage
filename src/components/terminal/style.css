@@ -1,15 +1,45 @@
 .main {
   color: #00ff00;
-  padding: 46px 20px 0 20px;
+  padding: 10px;
+  transition: opacity, .7s;
   font-size: 18px;
-  min-height: 100%;
+  position: fixed;
+  width: 766px;
+  max-width: 766px;
+  min-width: 766px;
+  left: calc(50% - 383px);
+  border: #a0a0a0 solid;
+  max-height: 500px;
+  min-height: 500px;
+  overflow-y: scroll;
+  top: 100px;
+  overflow-x: hidden;
+  background: rgba(0,0,0,.87);
+  box-shadow: rgba(0,0,0,.54) 5px 5px 2px 0px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
-.main form {
-  opacity: 0;
-  filter: alpha(opacity=0);
-  width: 0;
-  height: 0;
+.history {
+  color: rgba(0,255,0,.72);
+}
+
+.main input {
+  display: inline-block;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: calc(100% - 258px);
+  color: #0f0;
+  outline: none;
+  line-height: 1;
+  font-size: 18px;
+  font-family: Consolas;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .main .cursor {
