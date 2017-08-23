@@ -60,12 +60,30 @@ const commandMarius = command => {
 
 		case 'toolbelt':
 			return (
-				<span>TOOLBELT</span>
+				<span>
+					<h3>Marius' toolbelt</h3>
+					<ul>
+						<li><b>Editor: </b>GitHub's Atom.io</li>
+						<li><b>Desktop OS: </b>Windows 10 pro with Ubuntu Subsystem & Ubuntu 16.04</li>
+						<li><b>Serverside OS: </b>CentOS 7 & Debian</li>
+						<li><b>Browser: </b>Chrome beta, Chrome canary, Tor browser,</li>
+						<li><b>Dev-tools: </b>Browsersync, Zeit's Hyper.is, Hyper-V-, OhMyZsh, yarn, git and Lighthouse</li>
+						<li><b>Image-Manipulation: </b>Adobe Photoshop CC 2017</li>
+					</ul>
+				</span>
 			);
 
 		case 'general':
 			return (
-				<span>Hi, I'm Marius, {calculateAge(2001, 11, 22)} years old. And currently living and studying in Hamburg.</span>
+				<span>
+					Hi, I'm Marius, {calculateAge(2001, 11, 22)} years old. And currently living and studying in Hamburg.<br />
+					I've started coding with python {calculateAge(2001, 11, 22) - 11} years ago. Since then I learned many new programing languages and skills,<br />
+					so I can call myself a fullstackk Web Developer, even though I'm not that old yet.<br />
+					[hint] marius.skills ;)<br />
+					But I don't only know programing languages, I also speak German, English and Finish.<br />
+					If you have any specific questions, just ask :)<br />
+					[hint] marius.contact
+				</span>
 			);
 
 		case 'work':

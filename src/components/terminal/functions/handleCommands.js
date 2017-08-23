@@ -170,8 +170,8 @@ const handleCommands = (command, consoleInput, state, setState) => {
 				setState({ commandList });
 				setTimeout(() => {
 					setState({ inputVisible: true });
-				}, Math.random() * 500);
-			}, Math.random() * 1000);
+				}, Math.random() * 200);
+			}, Math.random() * 600);
 		}
 	}
 	else {
