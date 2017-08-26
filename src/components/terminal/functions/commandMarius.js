@@ -21,14 +21,14 @@ const commandMarius = command => {
 						\_|  |_/\__,_|_|  |_|\__,_|___/\____/\_____/\___/ <br />
 					</span>
 					<br />Usage: <i>marius [command]</i><br /><br />
-        Where <i>[command]</i> is one of following:<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- help<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- skills<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- toolbelt<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- general<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- work<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- contact<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;- socialnetorks
+					Where <i>[command]</i> is one of following:<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- help<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- skills<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- toolbelt<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- general<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- work<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- contact<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;- socialnetorks
 				</span>
 			);
 
@@ -54,7 +54,6 @@ const commandMarius = command => {
 						<li>Serverside Applications</li>
 						<li>simple Andoid Apps</li>
 					</ul>
-          [hint] if you think, I might help you with your project or you have<br />an idea of something you think I can do,<br />use <i>marius contact</i> to contact me :)
 				</span>
 			);
 
@@ -96,7 +95,7 @@ const commandMarius = command => {
 				<span>CONTACT</span>
 			);
 
-		case 'socialnetorks':
+		case 'socialnetworks':
 			return (
 				<span>SOCIAL</span>
 			);

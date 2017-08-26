@@ -97,10 +97,10 @@ const handleCommands = (command, consoleInput, state, setState) => {
 						case 'list':
 							response = (
 								<span>
-									[system] you can select one of following wallpapers:<br />
+									[system] you can select one of the following wallpapers:<br />
 									&nbsp;&nbsp;&nbsp;&nbsp;- linux<br />
 									&nbsp;&nbsp;&nbsp;&nbsp;- xp<br />
-									&nbsp;&nbsp;&nbsp;&nbsp;- niveri<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;- nature<br />
 									&nbsp;&nbsp;&nbsp;&nbsp;- src
 								</span>);
 							break;
@@ -114,9 +114,9 @@ const handleCommands = (command, consoleInput, state, setState) => {
 							break;
 						case 'xp':
 							document.getElementById('wrapper').style.backgroundImage = 'url(../assets/wallpaper/xp.jpg)';
-							response = <span>[system] changed wallpaper to some useless lawn</span>;
+							response = <span>[system] changed wallpaper to some useless lawn with a retarded but kinda nice penguin in the background.</span>;
 							break;
-						case 'niveri':
+						case 'nature':
 							document.getElementById('wrapper').style.backgroundImage = 'url(../assets/wallpaper/niveri.jpg)';
 							response = <span>[system] changed wallpaper to a picture I took in finland :)</span>;
 							break;

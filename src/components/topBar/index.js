@@ -11,8 +11,8 @@ export default class TopBar extends Component {
 					document.getElementById('wrapper').style.opacity = 0;
 					setTimeout(() => {
 						document.getElementById('wrapper').style.display = 'none';
-						document.getElementById('byeTxt').style.display = 'block';
-						document.getElementById('byeTxt').style.opacity = 1;
+						document.getElementById('welcomeTxt').style.display = 'block';
+						document.getElementById('welcomeTxt').style.opacity = 1;
 					}, 700);
 				}, 1000);
 			}

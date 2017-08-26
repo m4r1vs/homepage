@@ -7,7 +7,7 @@
     "start": "if-env NODE_ENV=production && yarn run -s serve || yarn run -s dev",
     "build": "preact build",
     "serve": "preact build && preact serve -p 8001",
-    "dev": "preact watch",
+    "dev": "preact watch -p 8000",
     "test": "eslint src && preact test"
   },
   "eslintConfig": {

@@ -1,4 +1,4 @@
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 555px) {
     #topBar, #terminal {
         display: none !important;
     }
@@ -74,7 +74,7 @@ html, body {
   color: #0f0;
 }
 
-#byeTxt {
+#welcomeTxt {
 	position: fixed;
 	transition: opacity, .5s;
 	width: 100%;
@@ -86,11 +86,11 @@ html, body {
   color: #0f0;
 }
 
-#byeTxt span {
+#welcomeTxt span {
 	font-size: 18px;
 }
 
-#byeTxt img {
+#welcomeTxt img {
 	cursor: pointer;
 }
 
@@ -123,7 +123,7 @@ span {
 	opacity: 0;
 	display: none;
 	height: 100vh;
-	background-color: #2b303b;
+	background-color: rgb(43, 88, 43);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

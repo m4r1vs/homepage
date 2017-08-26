@@ -20,13 +20,10 @@ export default class Main extends Component {
 		}
 
 		handleKeyPress = e => {
-			if (e.key !== 'Enter') {
-				this.keyPressElem.currentTime = 0;
-				this.keyPressElem.play();
-			}
-			else {
-				this.handleEnter(e);
-			}
+			if (e.key === 'Enter') this.handleEnter(e);
+			const snd = new Audio('../../assets/keyPress.mp3');
+			snd.volume = 0.3;
+			snd.play();
 			if (e.key === 'ArrowUp');
 			if (e.key === 'ArrowDown');
 			this.focusInput();
@@ -61,17 +58,12 @@ export default class Main extends Component {
 						<span>{this.props.state.path}{commandList.command}<br /><span class={style.history}>{commandList.response}</span></span>
 					)}
 
-					<audio
-						ref={(audio) => {this.keyPressElem = audio;}}
-						src="../../assets/keyPress.mp3"
-						autostart="false"
-					/>
-
 					<span style={{ display: this.props.state.inputVisible ? 'inline-block':'none', width: '258px', marginBottom: '10px' }}>{this.props.state.path}
 
 					</span>
 
 					<input
+						onBlur={this.focusInput}
 						name={Math.random() + '-input'}
 						ref={(input) => {this.consoleInput = input;}}
 						autoComplete={false}
@@ -79,7 +71,7 @@ export default class Main extends Component {
 						type="text"
 						onInput={this.changeText}
 						autoFocus
-						style={{ display: this.props.state.inputVisible ? 'inline-block':'none' }}
+						style={{ opacity: this.props.state.inputVisible ? '1':'0' }}
 					/>
 
 				</div>
