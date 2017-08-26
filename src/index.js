@@ -1,3 +1,4 @@
+// starting point
 import './style';
 import App from './components/app';
 
